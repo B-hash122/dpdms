@@ -29,6 +29,8 @@ spring:
           uri: lb://zoonotic-service
           predicates:
             - Path=/api/v1/zoonotic/**
+          filters:
+            - RewritePath=/api/v1/zoonotic(?<segment>/?.*), /api/zoonotic-incidents$\{segment}
 
         - id: mining-service
           uri: lb://mining-service
